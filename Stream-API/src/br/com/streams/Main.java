@@ -15,30 +15,42 @@ public class Main {
 		
 		// Maneira Tradicional
 		
-		for(Empregado emp : empregados) {
-			System.out.println("Nome: " + emp.getNome());
-		}
-		
-		System.out.println();
+//		for(Empregado emp : empregados) {
+//			System.out.println("Nome: " + emp.getNome());
+//		}
+//		
+//		System.out.println();
 		
 		// Com a Stream API - Lambda
 		
-		Stream<Empregado> empStream = empregados.stream();
-		
-		empStream.forEach(emp -> System.out.println("Nome: " + emp.getNome()));
-		
-		System.out.println();
+//		Stream<Empregado> empStream = empregados.stream();
+//		
+//		empStream.forEach(emp -> System.out.println("Nome: " + emp.getNome()));
+//		
+//		System.out.println();
 		
 		// Com a Stream API - Method Reference - Tem que sobrescrever toString()
 		
-		empStream = empregados.stream();
+//		empStream = empregados.stream();
+//		
+//		empStream.forEach(System.out::println);
+//		
+//		empStream = empregados.stream();
+//		
+//		var maiorSalario = empStream.mapToDouble(emp -> emp.getSalario()).max();
+//		System.out.println(maiorSalario);
 		
-		empStream.forEach(System.out::println);
+		// *************************************************************************************** //
 		
-		empStream = empregados.stream();
+		System.out.println("Funcionários que começam com J: ");
 		
-		var maiorSalario = empStream.mapToDouble(emp -> emp.getSalario()).max();
-		System.out.println(maiorSalario);
+		Stream<Empregado> empStream = empregados.stream();
+		
+		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
+		
+		empregadosComecamComJ.forEach(emp -> System.out.println(emp));
+		
+		
 	}
 
 }
