@@ -61,7 +61,11 @@ public class Main {
 		
 		OptionalDouble minimumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).min();
 		
-		System.out.println("Menor salários dos funcionários com J: R$ " + minimumSalary);
+		System.out.println("Menor salários dos funcionários com J: R$ " + minimumSalary.getAsDouble());
+		
+		OptionalDouble maximumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).max();
+		
+		System.out.println("Maior salários dos funcionários com J: R$ " + maximumSalary.getAsDouble());
 
 	}
 
