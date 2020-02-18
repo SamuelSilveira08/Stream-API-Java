@@ -2,6 +2,7 @@ package br.com.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,25 +14,25 @@ public class Main {
 		empregados.add(new Empregado(2, "Maria", 3000, "RH"));
 		empregados.add(new Empregado(3, "José", 5000, "Controladoria"));
 		empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
-		
+
 		// Maneira Tradicional
-		
+
 //		for(Empregado emp : empregados) {
 //			System.out.println("Nome: " + emp.getNome());
 //		}
 //		
 //		System.out.println();
-		
+
 		// Com a Stream API - Lambda
-		
+
 //		Stream<Empregado> empStream = empregados.stream();
 //		
 //		empStream.forEach(emp -> System.out.println("Nome: " + emp.getNome()));
 //		
 //		System.out.println();
-		
+
 		// Com a Stream API - Method Reference - Tem que sobrescrever toString()
-		
+
 //		empStream = empregados.stream();
 //		
 //		empStream.forEach(System.out::println);
@@ -40,24 +41,24 @@ public class Main {
 //		
 //		var maiorSalario = empStream.mapToDouble(emp -> emp.getSalario()).max();
 //		System.out.println(maiorSalario);
-		
-		// *************************************************************************************** //
-		
+
+		// ***************************************************************************************
+		// //
+
 		System.out.println("Funcionários que começam com J: ");
-		
+
 		Stream<Empregado> empStream = empregados.stream();
-		
+
 		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
-		
+
 		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
-		
+
 		empregadosComJ.stream().forEach(emp -> System.out.println(emp));
-		
-		var salarySum = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).sum();
-		
+
+		double salarySum = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).sum();
+
 		System.out.println("Soma dos salários dos funcionários com J: R$ " + salarySum);
-		
-		
+
 	}
 
 }
