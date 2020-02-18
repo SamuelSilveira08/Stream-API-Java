@@ -1,9 +1,11 @@
 package br.com.streams;
 
+import java.util.Random;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class MainFunctionalInterfaces {
 
@@ -16,7 +18,7 @@ public class MainFunctionalInterfaces {
 		
 		consumer.accept(new Empregado(10, "Samuel", 3000, "TI"));
 		
-		// Entram dois parâmetros e retorna algo
+		// Entra um parâmetros e retorna algo
 		
 		Function<Empregado, Double> function = emp -> emp.getSalario() * 10;
 		
@@ -24,7 +26,7 @@ public class MainFunctionalInterfaces {
 		
 		System.out.println(salaryTenTimes);
 		
-		// Entra um parâmetro e retorna algo do mesmo tipo
+		// Entram dois parâmetros e retorna algo do mesmo tipo
 		
 		BinaryOperator<Empregado> binaryOperator = (emp1, emp2) -> new Empregado(5, emp1.getNome() + emp2.getNome(),
 				emp1.getSalario() + emp2.getSalario(), "Junção");
@@ -38,6 +40,14 @@ public class MainFunctionalInterfaces {
 		predicate.test(new Empregado(10, "Samuel", 3000, "TI"));
 		
 		System.out.println("Termina com \"el\"");
+		
+		// Não tem parâmetro e sempre retorna algo
+		
+		Supplier<Empregado> supplier = () -> new Empregado(new Random().nextInt(), "Samuel", 3000, "TI");
+		
+		Empregado emp = supplier.get();
+		
+		System.out.println(emp);
 		
 	}
 
