@@ -58,6 +58,10 @@ public class Main {
 		double salarySum = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).sum();
 
 		System.out.println("Soma dos salários dos funcionários com J: R$ " + salarySum);
+		
+		OptionalDouble minimumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).min();
+		
+		System.out.println("Menor salários dos funcionários com J: R$ " + minimumSalary);
 
 	}
 
