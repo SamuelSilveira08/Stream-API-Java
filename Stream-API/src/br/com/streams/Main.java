@@ -47,24 +47,27 @@ public class Main {
 
 		System.out.println("Funcionários que começam com J: ");
 
-		Stream<Empregado> empStream = empregados.stream();
-
-		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
-
-		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
+//		Stream<Empregado> empStream = empregados.stream();
+//
+//		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
+//
+//		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
+		
+		List<Empregado> empregadosComJ = empregados.stream().filter(emp -> emp.getNome().startsWith("J"))
+				.collect(Collectors.toList());
 
 		empregadosComJ.stream().forEach(emp -> System.out.println(emp));
 
 		double salarySum = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).sum();
 
 		System.out.println("Soma dos salários dos funcionários com J: R$ " + salarySum);
-		
+
 		OptionalDouble minimumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).min();
-		
+
 		System.out.println("Menor salários dos funcionários com J: R$ " + minimumSalary.getAsDouble());
-		
+
 		OptionalDouble maximumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).max();
-		
+
 		System.out.println("Maior salários dos funcionários com J: R$ " + maximumSalary.getAsDouble());
 
 	}
