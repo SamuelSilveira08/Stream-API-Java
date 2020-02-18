@@ -1,10 +1,10 @@
 package br.com.streams;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -69,6 +69,14 @@ public class Main {
 		OptionalDouble maximumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).max();
 
 		System.out.println("Maior salários dos funcionários com J: R$ " + maximumSalary.getAsDouble());
+		
+		DoubleSummaryStatistics summary = empregados.stream().collect(Collectors.summarizingDouble(emp -> emp.getSalario()));
+		
+		System.out.println("Soma dos salários dos funcionários: R$ " + summary.getSum());
+		System.out.println("Média dos salários dos funcionários: R$ " + summary.getAverage());
+		System.out.println("O maior dos salários dos funcionários: R$ " + summary.getMax());
+		System.out.println("O menor dos salários dos funcionários: R$ " + summary.getMin());
+		System.out.println("Total de funcionários: " + summary.getCount());
 
 	}
 
