@@ -3,6 +3,7 @@ package br.com.streams;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		List<Empregado> empregados = new ArrayList<>();
-		empregados.add(new Empregado(1, "João", 2000, "Produção"));
+		empregados.add(new Empregado(1, "João", 1000, "Produção"));
 		empregados.add(new Empregado(2, "Maria", 3000, "RH"));
 		empregados.add(new Empregado(3, "José", 5000, "Controladoria"));
 		empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
@@ -84,6 +85,10 @@ public class Main {
 				.collect(Collectors.toList());
 
 		empregadosNomeSalario.forEach(System.out::println);
+
+		Optional<Empregado> empregadoMaiorSalario = empregados.stream().reduce((emp1, emp2) -> emp1.getSalario() > emp2.getSalario() ? emp1 : emp2);
+		
+		System.out.println(empregadoMaiorSalario.get());
 
 	}
 
