@@ -2,6 +2,7 @@ package br.com.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Stream;
 
 public class Main {
@@ -34,6 +35,11 @@ public class Main {
 		empStream = empregados.stream();
 		
 		empStream.forEach(System.out::println);
+		
+		empStream = empregados.stream();
+		
+		var maiorSalario = empStream.mapToDouble(emp -> emp.getSalario()).max();
+		System.out.println(maiorSalario);
 	}
 
 }
