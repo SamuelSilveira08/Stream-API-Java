@@ -2,6 +2,7 @@ package br.com.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
@@ -48,7 +49,13 @@ public class Main {
 		
 		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
 		
-		empregadosComecamComJ.forEach(emp -> System.out.println(emp));
+		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
+		
+		empregadosComJ.stream().forEach(emp -> System.out.println(emp));
+		
+		var salarySum = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).sum();
+		
+		System.out.println("Soma dos salários dos funcionários com J: R$ " + salarySum);
 		
 		
 	}
