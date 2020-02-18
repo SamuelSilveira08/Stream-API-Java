@@ -47,7 +47,7 @@ public class MainFunctionalInterfaces {
 		
 		Empregado emp = supplier.get();
 		
-		System.out.println(emp);
+		System.out.println(emp + " ID: " + emp.getId());
 		
 	}
 
