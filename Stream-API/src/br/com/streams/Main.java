@@ -52,7 +52,7 @@ public class Main {
 //		Stream<Empregado> empregadosComecamComJ = empStream.filter(emp -> emp.getNome().startsWith("J"));
 //
 //		List<Empregado> empregadosComJ = empregadosComecamComJ.collect(Collectors.toList());
-		
+
 		List<Empregado> empregadosComJ = empregados.stream().filter(emp -> emp.getNome().startsWith("J"))
 				.collect(Collectors.toList());
 
@@ -69,14 +69,21 @@ public class Main {
 		OptionalDouble maximumSalary = empregadosComJ.stream().mapToDouble(emp -> emp.getSalario()).max();
 
 		System.out.println("Maior salários dos funcionários com J: R$ " + maximumSalary.getAsDouble());
-		
-		DoubleSummaryStatistics summary = empregados.stream().collect(Collectors.summarizingDouble(emp -> emp.getSalario()));
-		
+
+		DoubleSummaryStatistics summary = empregados.stream()
+				.collect(Collectors.summarizingDouble(emp -> emp.getSalario()));
+
 		System.out.println("Soma dos salários dos funcionários: R$ " + summary.getSum());
 		System.out.println("Média dos salários dos funcionários: R$ " + summary.getAverage());
 		System.out.println("O maior dos salários dos funcionários: R$ " + summary.getMax());
 		System.out.println("O menor dos salários dos funcionários: R$ " + summary.getMin());
 		System.out.println("Total de funcionários: " + summary.getCount());
+
+		List<String> empregadosNomeSalario = empregados.stream()
+				.map(emp -> "Nome: " + emp.getNome() + ". Salário: R$ " + emp.getSalario())
+				.collect(Collectors.toList());
+
+		empregadosNomeSalario.forEach(System.out::println);
 
 	}
 
