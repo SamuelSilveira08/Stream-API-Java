@@ -3,6 +3,7 @@ package br.com.streams;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -89,6 +90,15 @@ public class Main {
 		Optional<Empregado> empregadoMaiorSalario = empregados.stream().reduce((emp1, emp2) -> emp1.getSalario() > emp2.getSalario() ? emp1 : emp2);
 		
 		System.out.println(empregadoMaiorSalario.get());
+		
+		Map<String, List<Empregado>> funcionariosDepartamento = empregados.stream().collect(Collectors.groupingBy(emp -> emp.getDepartamento()));
+		
+		funcionariosDepartamento.forEach((dep, emps) -> {
+			System.out.println(" - " + dep + " - " + emps.size() + " funcionário(s):");
+			emps.forEach(emp -> {
+				System.out.println("   * " + emp.getNome());
+			});
+		});
 
 	}
 
